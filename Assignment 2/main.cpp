@@ -24,5 +24,8 @@ int main (void)
 
 	theSimulator.ui ();
 
+	//Test print
+	print ();
+
 	return 0;
 }
