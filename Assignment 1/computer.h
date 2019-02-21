@@ -1,6 +1,9 @@
 #ifndef COMPUTER_H_INCLUDED
 #define COMPUTER_H_INCLUDED
 
+#include "program.h"
+
+// Creating the Class for computer
 class Computer {
     double clockRateGHz;     // Clock rate in GHz
     double cpiArith;         // CPI of instruction class Arith
@@ -11,6 +14,9 @@ public:
     Computer (double, double, double, double, double);
     void printStats ();
     double calculateGlobalCPI ();
+    double calculateExecutionTime (Program);
+    double calculateMIPS ();
+    double calculateMIPS (Program);
 };
 
 #endif // COMPUTER_H_INCLUDED
