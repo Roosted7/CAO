@@ -3,15 +3,9 @@
 
 using namespace std;
 
-Registers::Registers() {
-    r[32] = {0};
-    PC = 0;
-}
-
 void Registers::setRegister(int regNum, int value) {
-    if (regNum == 0) return
-
-    r[regnum] = value;
+    if (regNum != 0)
+        r[regNum] = value;
 }
 
 int Registers::getRegister(int regNum) {
@@ -28,8 +22,8 @@ int Registers::getPC() {
 
 void Registers::print() {
     for (int i = 0; i < 32; i++) {
-        cout << "register " << i << " contains: " << r[i];
+        cout << "register " << i << " contains: " << r[i] << "\n";
     }
-    cout << "PC contains: " << PC;
+    cout << "PC contains: " << PC << "\n\n";
 
 }

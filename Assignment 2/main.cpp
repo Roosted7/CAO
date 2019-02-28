@@ -1,6 +1,7 @@
 #include "simulator.h"
 #include "program.h"
 #include "registers.h"
+#include "instruction.h"
 
 void loadProgram (Program *program)
 {
@@ -23,9 +24,6 @@ int main (void)
 	Simulator theSimulator = Simulator (registers, program);
 
 	theSimulator.ui ();
-
-	//Test print
-	print ();
 
 	return 0;
 }
