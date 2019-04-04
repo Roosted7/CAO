@@ -26,7 +26,7 @@ begin
 			when "01" =>		-- j
 				branch	<= '1';
 				address	<= current (31 downto 28) & jump & "00";
-			when "10" =>		-- jr
+			when "10" =>		-- jr or jalr
 				branch	<= '1';
 				address	<= registers;
 			when "11" =>		-- branch instruction

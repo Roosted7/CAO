@@ -22,9 +22,9 @@ begin
 	process (instruction, funct)
 	begin
 		case instruction is
-			when "000000" =>		-- add, addu, and, nor, or, sll, srl, sub, subu, xor, jr
+			when "000000" =>		-- add, addu, and, nor, or, sll, srl, sub, subu, xor, jr, jalr, sllv
 				regdst <= '1';
-				if (funct = "001000") then
+				if (funct = "001000" or funct = "001001") then
 					branch <= "10";
 				else
 					branch <= "00";
@@ -34,7 +34,11 @@ begin
 				aluop <= "000";
 				memwrite <= '0';
 				alusrc <= '0';
-				regwrite <= '1';
+				if (funct = "001000") then
+					regwrite <= '0';
+				else
+					regwrite <= '1';					
+				end if;
 			when "000001" =>		-- bgez, bltz
 				regdst <= '0';
 				branch <= "11";

@@ -88,6 +88,9 @@ begin
 				else
 					branch <= '0';
 				end if;
+			when "10000" =>		-- sllv
+					result <= std_logic_vector (shift_left (unsigned (data2), to_integer (unsigned (data1))));
+					branch <= '0';
 			when others =>
 				result <= "00000000000000000000000000000000";
 				branch <= '1';

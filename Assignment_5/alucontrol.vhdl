@@ -39,6 +39,8 @@ begin
 						aluinstr <= "00011";
 					when "100011" =>		-- subu
 						aluinstr <= "00011";
+					when "000100" =>		-- sllv
+						aluinstr <= "10000";
 					when others  =>
 						aluinstr <= "00000";
 				end case;
