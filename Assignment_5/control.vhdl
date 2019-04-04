@@ -9,7 +9,7 @@ entity control is
 		branch			: out std_logic_vector (1 downto 0);
 		regdst			: out std_logic;
 		memread			: out std_logic;
-		memtoreg		: out std_logic;
+		memtoreg		: out std_logic_vector (1 downto 0);
 		aluop			: out std_logic_vector (2 downto 0);
 		memwrite		: out std_logic;
 		alusrc			: out std_logic;
@@ -30,20 +30,20 @@ begin
 					branch <= "00";
 				end if;
 				memread <= '0';
-				memtoreg <= '0';
+				if (funct = "001001") then
+					memtoreg <= "10";
+				else
+					memtoreg <= "00";
+				end if;
 				aluop <= "000";
 				memwrite <= '0';
 				alusrc <= '0';
-				if (funct = "001000") then
-					regwrite <= '0';
-				else
-					regwrite <= '1';					
-				end if;
+				regwrite <= '1';					
 			when "000001" =>		-- bgez, bltz
 				regdst <= '0';
 				branch <= "11";
 				memread <= '0';
-				memtoreg <= '0';
+				memtoreg <= "00";
 				aluop <= "110";
 				memwrite <= '0';
 				alusrc <= '0';
@@ -52,7 +52,7 @@ begin
 				regdst <= '0';
 				branch <= "01";
 				memread <= '0';
-				memtoreg <= '0';
+				memtoreg <= "00";
 				aluop <= "000";
 				memwrite <= '0';
 				alusrc <= '0';
@@ -61,7 +61,7 @@ begin
 				regdst <= '0';
 				branch <= "11";
 				memread <= '0';
-				memtoreg <= '0';
+				memtoreg <= "00";
 				aluop <= "111";
 				memwrite <= '0';
 				alusrc <= '0';
@@ -70,7 +70,7 @@ begin
 				regdst <= '0';
 				branch <= "11";
 				memread <= '0';
-				memtoreg <= '0';
+				memtoreg <= "00";
 				aluop <= "111";
 				memwrite <= '0';
 				alusrc <= '0';
@@ -79,7 +79,7 @@ begin
 				regdst <= '0';
 				branch <= "11";
 				memread <= '0';
-				memtoreg <= '0';
+				memtoreg <= "00";
 				aluop <= "111";
 				memwrite <= '0';
 				alusrc <= '0';
@@ -88,7 +88,7 @@ begin
 				regdst <= '0';
 				branch <= "11";
 				memread <= '0';
-				memtoreg <= '0';
+				memtoreg <= "00";
 				aluop <= "111";
 				memwrite <= '0';
 				alusrc <= '0';
@@ -97,7 +97,7 @@ begin
 				regdst <= '0';
 				branch <= "00";
 				memread <= '0';
-				memtoreg <= '0';
+				memtoreg <= "00";
 				aluop <= "001";
 				memwrite <= '0';
 				alusrc <= '1';
@@ -106,7 +106,7 @@ begin
 				regdst <= '0';
 				branch <= "00";
 				memread <= '0';
-				memtoreg <= '0';
+				memtoreg <= "00";
 				aluop <= "001";
 				memwrite <= '0';
 				alusrc <= '1';
@@ -115,7 +115,7 @@ begin
 				regdst <= '0';
 				branch <= "00";
 				memread <= '0';
-				memtoreg <= '0';
+				memtoreg <= "00";
 				aluop <= "010";
 				memwrite <= '0';
 				alusrc <= '1';
@@ -124,7 +124,7 @@ begin
 				regdst <= '0';
 				branch <= "00";
 				memread <= '0';
-				memtoreg <= '0';
+				memtoreg <= "00";
 				aluop <= "011";
 				memwrite <= '0';
 				alusrc <= '1';
@@ -133,7 +133,7 @@ begin
 				regdst <= '0';
 				branch <= "00";
 				memread <= '0';
-				memtoreg <= '0';
+				memtoreg <= "00";
 				aluop <= "100";
 				memwrite <= '0';
 				alusrc <= '1';
@@ -142,7 +142,7 @@ begin
 				regdst <= '0';
 				branch <= "00";
 				memread <= '0';
-				memtoreg <= '0';
+				memtoreg <= "00";
 				aluop <= "101";
 				memwrite <= '0';
 				alusrc <= '1';
@@ -151,7 +151,7 @@ begin
 				regdst <= '0';
 				branch <= "00";
 				memread <= '1';
-				memtoreg <= '1';
+				memtoreg <= "01";
 				aluop <= "001";
 				memwrite <= '0';
 				alusrc <= '1';
@@ -160,7 +160,7 @@ begin
 				regdst <= '0';
 				branch <= "00";
 				memread <= '0';
-				memtoreg <= '0';
+				memtoreg <= "00";
 				aluop <= "001";
 				memwrite <= '1';
 				alusrc <= '1';
@@ -169,7 +169,7 @@ begin
 				regdst <= '0';
 				branch <= "00";
 				memread <= '0';
-				memtoreg <= '0';
+				memtoreg <= "00";
 				aluop <= "000";
 				memwrite <= '0';
 				alusrc <= '0';

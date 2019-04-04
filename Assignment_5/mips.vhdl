@@ -43,7 +43,7 @@ component control
 		branch		: out std_logic_vector (1 downto 0);
 		regdst		: out std_logic;
 		memread		: out std_logic;
-		memtoreg	: out std_logic;
+		memtoreg	: out std_logic_vector (1 downto 0);
 		aluop		: out std_logic_vector (2 downto 0);
 		memwrite	: out std_logic;
 		alusrc		: out std_logic;
@@ -116,8 +116,8 @@ component registers
 	);
 end component;
 
-	signal branch, branchalu, regwrite, regdst, memread, memtoreg, memwrite, alusrc : std_logic;
-	signal branchcontrol	: std_logic_vector (1 downto 0);
+	signal branch, branchalu, regwrite, regdst, memread, memwrite, alusrc : std_logic;
+	signal branchcontrol, memtoreg	: std_logic_vector (1 downto 0);
 	signal aluop		: std_logic_vector (2 downto 0);
 	signal aluinstr		: std_logic_vector (4 downto 0);
 	signal writereg		: std_logic_vector (4 downto 0);
@@ -129,8 +129,9 @@ begin
 				instruction (20 downto 16)	when others;
 
 	with memtoreg select
-		writedata <=	memorydata			when '1',
-				result				when others;
+		writedata <=	memorydata			when "01",
+						add_pc				when "10",
+						result				when others;
 
 	with alusrc select
 		aludatasel <=	extended			when '1',
